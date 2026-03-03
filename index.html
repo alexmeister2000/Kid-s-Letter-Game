@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Letter Learning Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .letters { display: flex; justify-content: space-around; margin: 20px 0; }
+        .letter { font-size: 2em; cursor: pointer; }
+        .score { font-size: 1.5em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Learn Your Letters!</h1>
+    <div class="letters"></div>
+    <div class="score">Score: <span id="score">0</span></div>
+
+    <script>
+        const letters = ['A', 'B', 'C', 'D'];
+        let score = 0;
+
+        function playSound(letter) {
+            const audio = new Audio(`https://example.com/sounds/${letter}.mp3`); // Replace with actual sounds
+            audio.play();
+        }
+
+        function displayLetters() {
+            const lettersContainer = document.querySelector('.letters');
+            lettersContainer.innerHTML = '';
+            letters.forEach(letter => {
+                const letterElement = document.createElement('div');
+                letterElement.textContent = letter;
+                letterElement.classList.add('letter');
+                letterElement.onclick = () => handleClick(letter);
+                lettersContainer.appendChild(letterElement);
+            });
+        }
+
+        function handleClick(letter) {
+            playSound(letter);
+            score++;
+            document.getElementById('score').textContent = score;
+            displayLetters(); // Refresh letters after click
+        }
+
+        displayLetters();
+    </script>
+</body>
+</html>
