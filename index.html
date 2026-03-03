@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kid's Letter Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game" aria-live="polite">
+      <h1>Find the Letter</h1>
+      <p class="subtitle">Listen to the letter and tap the matching card.</p>
+
+      <section class="status">
+        <p><strong>Score:</strong> <span id="score">0</span></p>
+        <p><strong>Round:</strong> <span id="round">1</span></p>
+      </section>
+
+      <section class="prompt-panel">
+        <p id="promptText">Press “Say Letter” to begin!</p>
+        <button id="speakBtn" type="button">🔊 Say Letter</button>
+      </section>
+
+      <section class="letter-grid" id="letterGrid" aria-label="Letter options"></section>
+
+      <p id="feedback" class="feedback"></p>
+      <button id="nextBtn" type="button">Next Round</button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
