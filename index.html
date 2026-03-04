@@ -1,50 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Letter Learning Game</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .letters { display: flex; justify-content: space-around; margin: 20px 0; }
-        .letter { font-size: 2em; cursor: pointer; }
-        .score { font-size: 1.5em; margin-top: 20px; }
-    </style>
-</head>
-<body>
-    <h1>Learn Your Letters!</h1>
-    <div class="letters"></div>
-    <div class="score">Score: <span id="score">0</span></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kid's Letter Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game" aria-live="polite">
+      <h1>🌈 Learn Your Letters!</h1>
+      <p class="subtitle">Tap <strong>Start Game</strong>, listen, then pick the matching letter.</p>
 
-    <script>
-        const letters = ['A', 'B', 'C', 'D'];
-        let score = 0;
+      <section class="status">
+        <p>⭐ Score: <span id="score">0</span></p>
+        <p>🎯 Round: <span id="round">1</span></p>
+      </section>
 
-        function playSound(letter) {
-            const audio = new Audio(`https://example.com/sounds/${letter}.mp3`); // Replace with actual sounds
-            audio.play();
-        }
+      <section class="prompt-panel">
+        <p id="promptText">Press Start Game to begin!</p>
+        <div class="controls">
+          <button id="startBtn" type="button">▶️ Start Game</button>
+          <button id="speakBtn" type="button" disabled>🔊 Say Letter</button>
+          <button id="nextBtn" type="button" disabled>➡️ Next Round</button>
+        </div>
+        <p id="audioStatus" class="audio-status"></p>
+      </section>
 
-        function displayLetters() {
-            const lettersContainer = document.querySelector('.letters');
-            lettersContainer.innerHTML = '';
-            letters.forEach(letter => {
-                const letterElement = document.createElement('div');
-                letterElement.textContent = letter;
-                letterElement.classList.add('letter');
-                letterElement.onclick = () => handleClick(letter);
-                lettersContainer.appendChild(letterElement);
-            });
-        }
+      <section class="letter-grid" id="letterGrid" aria-label="Letter options"></section>
 
-        function handleClick(letter) {
-            playSound(letter);
-            score++;
-            document.getElementById('score').textContent = score;
-            displayLetters(); // Refresh letters after click
-        }
+      <p id="feedback" class="feedback"></p>
+    </main>
 
-        displayLetters();
-    </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
